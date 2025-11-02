@@ -1,14 +1,15 @@
-# Dockerfile
+# Dockerfile - Keycloak 26.0.2 for Render (Postgres)
 FROM quay.io/keycloak/keycloak:26.0.2
 
-# Copy config nếu cần (ở đây không cần thêm)
+# Set build-time environment for Postgres
+ENV KC_DB=postgres
 ENV KC_HEALTH_ENABLED=false
 ENV KC_METRICS_ENABLED=false
 
-# Build Keycloak ở chế độ production
+# Build optimized server with Postgres config baked in
 RUN /opt/keycloak/bin/kc.sh build
 
-# Expose cổng 8080 (Render sẽ map tự động)
 EXPOSE 8080
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized"]
+# Start Keycloak with HTTP mode (no SSL)
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--http-enabled=true", "--hostname-strict=false", "--hostname-strict-backchannel=false"]
