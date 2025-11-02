@@ -12,4 +12,4 @@ RUN /opt/keycloak/bin/kc.sh build
 EXPOSE 8080
 
 # Start Keycloak with HTTP mode (no SSL)
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--http-enabled=true", "--hostname-strict=false", "--hostname-strict-backchannel=false"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start", "--optimized", "--http-enabled=true", "--hostname-strict=false"]
