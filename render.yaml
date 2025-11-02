@@ -3,24 +3,31 @@ services:
     name: keycloak
     env: docker
     plan: free
-    buildCommand: ./bin/kc.sh build
-    startCommand: ./bin/kc.sh start --optimized --http-enabled=true --hostname-strict=false
+    autoDeploy: true
+    region: oregon
+    dockerfilePath: ./Dockerfile
     envVars:
-      - key: KEYCLOAK_ADMIN
-        value: admin
-      - key: KEYCLOAK_ADMIN_PASSWORD
-        value: 1PUAU07BABNkB3rmItclusfwUxRTXsIa
       - key: KC_DB
         value: postgres
-      - key: KC_DB_URL
-        value: jdbc:postgresql://dpg-d431shbipnbc73c2mgig-a/keycloak_db_vfzf
+      - key: KC_DB_URL_HOST
+        value: dpg-d431shbipnbc73c2mgig-a
+      - key: KC_DB_URL_PORT
+        value: 5432
+      - key: KC_DB_URL_DATABASE
+        value: keycloak_db_vfzf
       - key: KC_DB_USERNAME
         value: keycloak_db_vfzf_user
       - key: KC_DB_PASSWORD
-        value: (mật khẩu thật của bạn)
-      - key: KC_HTTP_PORT
-        value: 8080
-
-databases:
-  - name: keycloak-db
-    plan: free
+        value: 1PUAU07BABNkB3rmItclusfwUxRTXsIa
+      - key: KC_DB_SCHEMA
+        value: public
+      - key: KC_PROXY
+        value: edge
+      - key: KC_HOSTNAME
+        value: https://keycloak-yourapp.onrender.com
+      - key: KEYCLOAK_ADMIN
+        value: admin
+      - key: KEYCLOAK_ADMIN_PASSWORD
+        value: admin123
+      - key: JAVA_OPTS
+        value: -Djava.net.preferIPv4Stack=true
