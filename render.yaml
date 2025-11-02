@@ -7,7 +7,7 @@ services:
       - key: KC_DB
         value: postgres
       - key: KC_DB_URL
-        value: postgresql://keycloak_db_vfzf_user:1PUAU07BABNkB3rmItclusfwUxRTXsIa@dpg-d43lshbipnbc73c2mgig-a/keycloak_db_vfzf
+        value: postgresql://keycloak_db_vfzf_user:1PUAU07BABNkB3rmItclusfwUxRTXsIa@dpg-d43lshbipnbc73c2mgig-a.oregon-postgres.render.com/keycloak_db_vfzf
       - key: KC_DB_USERNAME
         value: keycloak_db_vfzf_user
       - key: KC_DB_PASSWORD
